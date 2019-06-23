@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp"
+        app:cardMaxElevation="5dp"
+        app:cardElevation="5dp"
+        android:layout_gravity="bottom">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp">
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:srcCompat="@drawable/ic_outline_error_outline_24px"
+                tools:ignore="ContentDescription"/>
+        <TextView
+                android:text="@string/something_went_wrong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:textColor="@android:color/white"/>
+        <TextView
+                android:text="@string/check_connection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"/>
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/retry"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_gravity="center_horizontal"
+                app:strokeWidth="0dp"
+                android:textColor="@android:color/white"
+                app:rippleColor="@android:color/white"
+                android:id="@+id/retry"/>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

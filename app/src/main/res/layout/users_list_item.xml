@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:id="@+id/outsideContainer"
+        style="@style/Widget.MaterialComponents.CardView" app:cardCornerRadius="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true" android:id="@+id/insideContainer">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:id="@+id/userImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                app:civ_border_color="@android:color/tertiary_text_light"
+                app:civ_border_width="1dp"
+                app:civ_shadow="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp"/>
+
+        <TextView
+                android:id="@+id/userNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/userImage"
+                app:layout_constraintEnd_toStartOf="@id/reorderImageView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/userImage"
+                android:layout_marginStart="8dp"
+                android:singleLine="true"
+                android:text="Diana Foster"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/userImage" android:layout_marginEnd="8dp"
+                android:textStyle="bold" android:layout_marginTop="4dp"/>
+
+        <TextView
+                android:id="@+id/userEmailTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="diana.foster95@example.com"
+                app:layout_constraintStart_toEndOf="@id/userImage"
+                android:layout_marginStart="8dp"
+                android:singleLine="true" app:layout_constraintBottom_toBottomOf="@id/userImage"
+                app:layout_constraintEnd_toStartOf="@id/reorderImageView" app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginEnd="8dp" android:textSize="16sp" android:layout_marginBottom="4dp"/>
+        <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp" app:srcCompat="@drawable/ic_outline_reorder_24px"
+                android:id="@+id/reorderImageView"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

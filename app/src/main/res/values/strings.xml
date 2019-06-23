@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ProvectusInternship</string>
+    <string name="transition_name">transition_name</string>
+    <string name="all_users">All users</string>
+    <string name="retry">retry</string>
+    <string name="check_connection">Please, check your connection and try later</string>
+    <string name="something_went_wrong">Something went wrong!</string>
+    <string name="failed_to_load">Failed to load photo</string>
+    <string name="loading">Loading</string>
+    <string name="please_wait">Please, wait</string>
+</resources>
