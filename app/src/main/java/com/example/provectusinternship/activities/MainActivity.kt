@@ -1,99 +1,54 @@
 package com.example.provectusinternship.activities
 
-import android.app.ProgressDialog
-import android.content.Intent
 import android.os.Bundle
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.view.ViewCompat
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.view.MenuItem
+import androidx.navigation.Navigation
 import com.arellomobile.mvp.MvpAppCompatActivity
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.provectusinternship.R
-import com.example.provectusinternship.SwipeAndDragHelper
-import com.example.provectusinternship.adapters.UsersListAdapter
-import com.example.provectusinternship.dialogs.BadConnectionDialog
 import com.example.provectusinternship.model.User
-import com.example.provectusinternship.presenters.MainActivityPresenter
-import com.example.provectusinternship.views.MainActivityView
+import com.example.provectusinternship.views.MainActivityCallback
 import com.mikhaellopez.circularimageview.CircularImageView
-import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : MvpAppCompatActivity(), MainActivityView {
-
-    private var dialog: ProgressDialog? = null
-
-    @InjectPresenter
-    lateinit var mainActivityPresenter: MainActivityPresenter
-
-    @ProvidePresenter
-    fun provideMainActivityPresenter(): MainActivityPresenter {
-        return MainActivityPresenter(this)
-    }
+class MainActivity : MvpAppCompatActivity(), MainActivityCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         title = getString(R.string.all_users)
-
-        loadDialogInit()
-
-        usersRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
-        usersRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0 && addUserFAB.isShown) {
-                    addUserFAB.hide()
-                } else if (dy < 0 &&  !addUserFAB.isShown)
-                    addUserFAB.show()
-            }
-        })
-
-        addUserFAB.setOnClickListener {mainActivityPresenter.loadUser()}
-        mainActivityPresenter.loadUsers()
-
     }
 
-    override fun onUsersListItemCLickListener(user: User,sharedImageView: CircularImageView) {
-        val intent = Intent(this@MainActivity,PersonDetail::class.java)
-        intent.putExtra("user",user)
-        intent.putExtra(getString(R.string.transition_name), ViewCompat.getTransitionName(sharedImageView))
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity, sharedImageView, ViewCompat.getTransitionName(sharedImageView)!!)
-        startActivity(intent, options.toBundle())
+    override fun onUsersListItemCLickListener(user: User, sharedImageView: CircularImageView) {
+        val bundle = Bundle()
+        bundle.putSerializable("user",user)
+        Navigation.findNavController(this,R.id.nav_host_fragment).navigate(R.id.action_usersList_to_personDetail,bundle)
+        showHomeButton()
+        setTitle("")
     }
 
-    override fun showUsers(usersListAdapter: UsersListAdapter) {
-        usersRecyclerView.adapter = usersListAdapter
-        val swipeAndDragHelper = SwipeAndDragHelper(usersListAdapter)
-        val touchHelper = ItemTouchHelper(swipeAndDragHelper)
-        usersListAdapter.setTouchHelper(touchHelper)
-        touchHelper.attachToRecyclerView(usersRecyclerView)
+    override fun showHomeButton() {
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun showErrorDialog(isUserAdd:Boolean) {
-        BadConnectionDialog(this@MainActivity,isUserAdd).show()
+    override fun hideHomeButton() {
+        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
     }
 
-    override fun showProgress() {
-        dialog!!.show()
+    override fun setTitle(message: String) {
+        title = message
     }
 
-    override fun hideProgress() {
-        dialog!!.hide()
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId){
+            android.R.id.home -> onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
-    override fun scrollToPosition(position: Int) {
-        usersRecyclerView.layoutManager!!.scrollToPosition(position)
+    override fun onBackPressed() {
+        super.onBackPressed()
+        hideHomeButton()
+        setTitle(getString(R.string.all_users))
     }
-
-    override fun loadDialogInit() {
-        dialog = ProgressDialog(this)
-        dialog!!.setTitle(getString(R.string.loading))
-        dialog!!.setMessage(getString(R.string.please_wait))
-        dialog!!.setCancelable(false)
-    }
-
 }
 

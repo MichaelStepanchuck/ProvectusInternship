@@ -1,16 +1,15 @@
 package com.example.provectusinternship.model
 
-import org.simpleframework.xml.Element
-import org.simpleframework.xml.Root
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
-@Root(name = "dob", strict = true)
-class DoB: Serializable {
+data class DoB(
+    @SerializedName("date")
+    @Expose
+    var date: String? = null,
 
-    @field:Element(name = "date")
-    var date: String? = null
-    @field:Element(name = "age")
-    var age: String? = null
-
-}
+    @SerializedName("age")
+    @Expose
+    var age: String? = null): Serializable

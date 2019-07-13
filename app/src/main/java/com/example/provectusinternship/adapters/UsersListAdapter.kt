@@ -5,17 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provectusinternship.R
 import com.example.provectusinternship.SwipeAndDragHelper
+import com.example.provectusinternship.views.MainActivityCallback
 import com.example.provectusinternship.model.User
 import com.example.provectusinternship.viewholders.UserViewHolder
-import com.example.provectusinternship.views.MainActivityView
 
 
-class UsersListAdapter(private val mResults: MutableList<User>,private val mainActivityView: MainActivityView) :
+class UsersListAdapter(private val mResults: MutableList<User>, private var MainActivityCallback: MainActivityCallback) :
     RecyclerView.Adapter<UserViewHolder>(), SwipeAndDragHelper.ActionCompletionContract {
 
     private var touchHelper: ItemTouchHelper? = null
@@ -30,6 +29,7 @@ class UsersListAdapter(private val mResults: MutableList<User>,private val mainA
     override fun onViewSwiped(position: Int) {
         mResults.removeAt(position)
         notifyItemRemoved(position)
+        notifyItemRangeChanged(position, mResults.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -39,9 +39,9 @@ class UsersListAdapter(private val mResults: MutableList<User>,private val mainA
     @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.bind(mResults[position])
-        ViewCompat.setTransitionName(holder.userImage, mResults[position].login!!.username)
         holder.insideContainer.setOnClickListener {
-            mainActivityView.onUsersListItemCLickListener(mResults[holder.adapterPosition],holder.userImage)
+            MainActivityCallback.onUsersListItemCLickListener(mResults[position],holder.userImage)
+            Log.d("",mResults[position].name.toString())
         }
         holder.reorderImageButton.setOnTouchListener { _, event ->
             if (event.actionMasked == MotionEvent.ACTION_DOWN) {
@@ -63,7 +63,5 @@ class UsersListAdapter(private val mResults: MutableList<User>,private val mainA
         mResults.add(user)
         notifyItemInserted(mResults.size-1)
     }
-
-    //TODO: Check code;
 
 }

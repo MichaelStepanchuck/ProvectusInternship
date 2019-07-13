@@ -1,25 +1,34 @@
 package com.example.provectusinternship.model
 
-import org.simpleframework.xml.Element
-import org.simpleframework.xml.Root
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Root(name = "login", strict = true)
-class Login : Serializable {
+data class Login(
+    @SerializedName("uuid")
+    @Expose
+    var uuid: String? = null,
 
-    @field:Element(name = "uuid")
-    var uuid: String? = null
-    @field:Element(name = "username")
-    var username: String? = null
-    @field:Element(name = "password")
-    var password: String? = null
-    @field:Element(name = "salt")
-    var salt: String? = null
-    @field:Element(name = "md5")
-    var md5: String? = null
-    @field:Element(name = "sha1")
-    var sha1: String? = null
-    @field:Element(name = "sha256")
-    var sha256: String? = null
+    @SerializedName("username")
+    @Expose
+    var username: String? = null,
 
-}
+    @SerializedName("password")
+    @Expose
+    var password: String? = null,
+
+    @SerializedName("salt")
+    @Expose
+    var salt: String? = null,
+
+    @SerializedName("md5")
+    @Expose
+    var md5: String? = null,
+
+    @SerializedName("sha1")
+    @Expose
+    var sha1: String? = null,
+
+    @SerializedName("sha256")
+    @Expose
+    var sha256: String? = null) : Serializable

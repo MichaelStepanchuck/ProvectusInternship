@@ -3,14 +3,15 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:id="@+id/outsideContainer"
+        android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.CardView" app:cardCornerRadius="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true" android:id="@+id/insideContainer">
+            android:clickable="true"
+            android:id="@+id/insideContainer">
 
         <com.mikhaellopez.circularimageview.CircularImageView
                 android:layout_width="52dp"
@@ -23,6 +24,7 @@
                 app:civ_border_color="@android:color/tertiary_text_light"
                 app:civ_border_width="1dp"
                 app:civ_shadow="false"
+                android:transitionName="personDetailImage"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="8dp"/>
 
@@ -37,6 +39,7 @@
                 android:layout_marginStart="8dp"
                 android:singleLine="true"
                 android:text="Diana Foster"
+                android:transitionName="personDetailName"
                 android:textSize="18sp"
                 app:layout_constraintTop_toBottomOf="@id/userImage" android:layout_marginEnd="8dp"
                 android:textStyle="bold" android:layout_marginTop="4dp"/>
@@ -46,6 +49,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="diana.foster95@example.com"
+                android:transitionName="personDetailEmail"
                 app:layout_constraintStart_toEndOf="@id/userImage"
                 android:layout_marginStart="8dp"
                 android:singleLine="true" app:layout_constraintBottom_toBottomOf="@id/userImage"

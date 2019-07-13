@@ -14,8 +14,10 @@
                 android:id="@+id/infoDrawableImageView"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_outline_wc_24px" android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp" android:layout_marginEnd="8dp"/>
+                android:src="@drawable/ic_outline_wc_24px"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"/>
 
         <TextView
                 android:id="@+id/infoTextView"

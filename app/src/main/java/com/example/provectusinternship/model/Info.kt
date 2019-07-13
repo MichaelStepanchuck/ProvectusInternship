@@ -1,16 +1,23 @@
 package com.example.provectusinternship.model
 
-import org.simpleframework.xml.Element
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
-class Info {
-    @field:Element(name = "seed")
-    var seed: String? = null
-    @field:Element(name = "results")
-    var results: Int? = null
-    @field:Element(name = "page")
-    var page: Int? = null
-    @field:Element(name = "version")
-    var version: String? = null
+data class Info(
+    @SerializedName("seed")
+    @Expose
+    var seed: String? = null,
 
-}
+    @SerializedName("results")
+    @Expose
+    var results: Int? = null,
+
+    @SerializedName("page")
+    @Expose
+    var page: Int? = null,
+
+    @SerializedName("version")
+    @Expose
+    var version: String? = null):Serializable

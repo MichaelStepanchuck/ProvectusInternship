@@ -14,11 +14,7 @@ class SwipeAndDragHelper(private val contract: ActionCompletionContract) : ItemT
         return makeMovementFlags(dragFlags, swipeFlags)
     }
 
-    override fun onMove(
-        recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder,
-        target: RecyclerView.ViewHolder
-    ): Boolean {
+    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
         contract.onViewMoved(viewHolder.adapterPosition, target.adapterPosition)
         return true
     }
@@ -31,15 +27,8 @@ class SwipeAndDragHelper(private val contract: ActionCompletionContract) : ItemT
         return false
     }
 
-    override fun onChildDraw(
-        c: Canvas,
-        recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder,
-        dX: Float,
-        dY: Float,
-        actionState: Int,
-        isCurrentlyActive: Boolean
-    ) {
+    override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float,
+        dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             val alpha = 1 - abs(dX) / recyclerView.width
             viewHolder.itemView.alpha = alpha
@@ -49,7 +38,6 @@ class SwipeAndDragHelper(private val contract: ActionCompletionContract) : ItemT
 
     interface ActionCompletionContract {
         fun onViewMoved(oldPosition: Int, newPosition: Int)
-
         fun onViewSwiped(position: Int)
     }
 

@@ -1,15 +1,14 @@
 package com.example.provectusinternship.model
 
-import org.simpleframework.xml.Element
-import org.simpleframework.xml.Root
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Root(name = "timezone", strict = true)
-class Timezone: Serializable {
+data class Timezone(
+    @SerializedName("offset")
+    @Expose
+    var offset: String? = null,
 
-    @field:Element(name = "offset")
-    var offset: String? = null
-    @field:Element(name = "description")
-    var description: String? = null
-
-}
+    @SerializedName("description")
+    @Expose
+    var description: String? = null): Serializable

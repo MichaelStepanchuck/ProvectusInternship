@@ -1,15 +1,15 @@
 package com.example.provectusinternship.dialogs
 
-import android.app.Activity
 import android.app.Dialog
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
+import androidx.fragment.app.Fragment
 import com.example.provectusinternship.R
-import com.example.provectusinternship.activities.MainActivity
+import com.example.provectusinternship.fragments.UsersList
 import kotlinx.android.synthetic.main.internet_troubles_dialog_layout.*
 
-class BadConnectionDialog(var activity: Activity, var isUserAdd:Boolean) : Dialog(activity) {
+class BadConnectionDialog(var fragment: Fragment, var isUserAdd:Boolean) : Dialog(fragment.context) {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,12 +22,12 @@ class BadConnectionDialog(var activity: Activity, var isUserAdd:Boolean) : Dialo
         lp.height = WindowManager.LayoutParams.MATCH_PARENT
         this.window!!.attributes = lp
         this.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-        this .setCancelable(false)
+        this.setCancelable(false)
 
         retry.setOnClickListener {
             this.dismiss()
-            if (isUserAdd) (activity as MainActivity).mainActivityPresenter.loadUser()
-                else (activity as MainActivity).mainActivityPresenter.loadUsers()
+            if (isUserAdd) (fragment as UsersList).usersListPresenter.loadUser()
+                else (fragment as UsersList).usersListPresenter.loadUsers()
         }
 
     }

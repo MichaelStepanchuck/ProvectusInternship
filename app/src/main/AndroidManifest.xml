@@ -12,7 +12,7 @@
             android:theme="@style/AppTheme"
             android:fullBackupContent="@xml/backup_descriptor"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".activities.PersonDetail" android:screenOrientation="portrait">
+        <activity android:name=".fragments.PersonDetail" android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activities.MainActivity" android:screenOrientation="portrait">
             <intent-filter>

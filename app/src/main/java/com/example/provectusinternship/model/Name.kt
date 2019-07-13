@@ -1,19 +1,22 @@
 package com.example.provectusinternship.model
 
 import android.annotation.SuppressLint
-import org.simpleframework.xml.Element
-import org.simpleframework.xml.Root
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Root(name = "name", strict = true)
-class Name : Serializable {
+data class Name(
+    @SerializedName("title")
+    @Expose
+    var title: String? = null,
 
-    @field:Element(name = "title")
-    var title: String? = null
-    @field:Element(name = "first")
-    var first: String? = null
-    @field:Element(name = "last")
-    var last: String? = null
+    @SerializedName("first")
+    @Expose
+    var first: String? = null,
+
+    @SerializedName("last")
+    @Expose
+    var last: String? = null) : Serializable {
 
 
     @SuppressLint("DefaultLocale")

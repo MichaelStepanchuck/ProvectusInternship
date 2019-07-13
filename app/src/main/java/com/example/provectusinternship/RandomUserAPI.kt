@@ -8,10 +8,10 @@ import retrofit2.http.GET
 interface RandomUserAPI {
 
 
-    @GET("/api/?format=XML&results=5")
+    @GET("/api/?results=5")
     fun getRandomUsers(): Single<RandomUserResponse>
 
-    @GET("/api/?format=XML")
+    @GET("/api/")
     fun getRandomUser(): Single<RandomUserResponse>
 
     object Factory {
@@ -21,6 +21,6 @@ interface RandomUserAPI {
     }
 
     companion object {
-        val SERVICE_ENDPOINT = "https://randomuser.me"
+        const val SERVICE_ENDPOINT = "https://randomuser.me"
     }
 }

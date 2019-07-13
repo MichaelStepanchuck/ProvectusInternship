@@ -1,16 +1,17 @@
 package com.example.provectusinternship.model
 
-import org.simpleframework.xml.Element
-import org.simpleframework.xml.Root
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
+data class Coordinates(
+    @SerializedName("date")
+    @Expose
+    var latitude: String? = null,
 
-@Root(name = "coordinates", strict = true)
-class Coordinates: Serializable {
+    @SerializedName("longitude")
+    @Expose
+    var longitude: String? = null):Serializable
 
-    @field:Element(name = "latitude")
-    var latitude: String? = null
-    @field:Element(name = "longitude")
-    var longitude: String? = null
 
-}
+
