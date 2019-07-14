@@ -59,4 +59,13 @@ class PersonDetail : MvpAppCompatFragment(),PersonDetailView {
         userInfoRecyclerView.adapter = UsersInfoListAdapter(currentUser.toArray())
     }
 
+    companion object{
+        fun newInstance(user: User):PersonDetail{
+            val args: Bundle = Bundle()
+            args.putSerializable("user", user)
+            val fragment = PersonDetail()
+            fragment.arguments = args
+            return fragment
+        }
+    }
 }
